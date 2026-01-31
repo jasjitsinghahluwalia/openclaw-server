@@ -1,10 +1,26 @@
 FROM node:22-slim
 
-# Install dependencies
+# Install dependencies including Chromium for WhatsApp Web
 RUN apt-get update && apt-get install -y \
     git \
     curl \
+    chromium \
+    libgbm1 \
+    libnss3 \
+    libatk-bridge2.0-0 \
+    libdrm2 \
+    libxkbcommon0 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxfixes3 \
+    libxrandr2 \
+    libatspi2.0-0 \
+    libcups2 \
     && rm -rf /var/lib/apt/lists/*
+
+# Set Puppeteer to use system Chromium
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
 # Install OpenClaw globally
 RUN npm install -g openclaw@latest
