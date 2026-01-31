@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.zeabur.app/template.json",
+  "name": "OpenClaw Server",
+  "description": "Personal AI Assistant - OpenClaw Gateway",
+  "icon": "https://openclaw.ai/favicon.ico",
+  "tags": ["ai", "assistant", "whatsapp", "telegram"],
+  "build": {
+    "type": "dockerfile",
+    "dockerfile": "Dockerfile"
+  },
+  "ports": [
+    {
+      "port": 18789,
+      "protocol": "http"
+    }
+  ],
+  "env": {
+    "OPENCLAW_GATEWAY_TOKEN": {
+      "description": "Gateway authentication token",
+      "required": true
+    },
+    "GOOGLE_API_KEY": {
+      "description": "Google AI API key for Gemini models",
+      "required": false
+    }
+  }
+}
